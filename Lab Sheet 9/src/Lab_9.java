@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class Lab_9 {
 
-
+	private static double finalfitness;
+	
 	public static ScalesSolution RMHC(ArrayList<Double> weights, int n, int iter)
 	{
 		ScalesSolution oldsol = new ScalesSolution(n);
@@ -11,21 +12,22 @@ public class Lab_9 {
 		for (int i = 0; i <= iter; i++)
 		{
 			oldfit = oldsol.ScalesFitness(weights);
-			System.out.println(oldsol.GetSol() + " .oldfit.. " + oldfit);
+			//System.out.println(oldsol.GetSol() + " .oldfit.. " + oldfit);
 
 			ScalesSolution newsol = new ScalesSolution(oldsol.GetSol());
 			newsol.SmallChange();
 			newfit = newsol.ScalesFitness(weights);
-			System.out.println(newsol.GetSol() + " .newfit.. " + newfit);
+			//System.out.println(newsol.GetSol() + " .newfit.. " + newfit);
 
 			if (newfit < oldfit) 
 			{
 				oldsol = newsol;
-				System.out.println(" result newfit... " + newfit);
+				finalfitness = newfit;
+				//System.out.println(" result newfit... " + newfit);
 			}
 			else
 			{
-				System.out.println(" result oldfit... " + oldfit);
+				finalfitness = oldfit;
 			}
 		}
 		return (oldsol);
@@ -34,15 +36,15 @@ public class Lab_9 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//		ScalesSolution s = new ScalesSolution("00000");
-		//		s.println();
-		//		s.SmallChange();
-		//		s.println();
-		//		
-		//		ScalesSolution s1 = new ScalesSolution(10);
-		//		s1.println();
-		//		ScalesSolution s2 = new ScalesSolution(s1.GetSol());
-		//		s2.println();
+//				ScalesSolution s = new ScalesSolution("00000");
+//				s.println();
+//				s.SmallChange();
+//				s.println();
+//				
+//				ScalesSolution s1 = new ScalesSolution(10);
+//				s1.println();
+//				ScalesSolution s2 = new ScalesSolution(s1.GetSol());
+//				s2.println();
 
 		ArrayList<Double> test = new ArrayList<Double>();
 		test.add((double) 1);
@@ -68,12 +70,14 @@ public class Lab_9 {
 
 		//System.out.println("Best Solution ... = " + RMHC(test, 20, 400).GetSol());
 
-		ArrayList<Double> h = CS2004.ReadNumberFile("/Users/Owner/Work Google Drive/Level 2 Modules/CS2004 Algorithms and their Applications/CS2004 Worksheets/Lab Sheet 8/1000 Primes.txt");
+		ArrayList<Double> h = CS2004.ReadNumberFile("1000 Primes.txt");
+		//System.out.println(h);
 //		for (int i = 0; i < 5; i++)
 //		{
 //			System.out.println(h.get(i));
 //		}
-		System.out.println("Best Solution ... = " + RMHC(h, 200, 10000).GetSol());
+		System.out.println("Best Solution ... = " + RMHC(h, 200, 100).GetSol());
+		System.out.println("Best fitness " + finalfitness);
 	}
 
 }

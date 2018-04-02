@@ -96,7 +96,6 @@ public class ScalesSolution
 	{
 		int n = scasol.length()-1;
 		int p = CS2004.UI(0, n);
-		//System.out.println("Position to change = " + p);//make sure to remove!!
 		String x = "";
 		
 		for (int i = 0; i < p; i++)
